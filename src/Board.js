@@ -166,6 +166,30 @@
         return false;
       }
 
+      var j, i, count, startRow, m, startCol;
+      var board = this;
+      m = majorDiagonalColumnIndexAtFirstRow;
+      count = 0; 
+    
+      startRow = 0;
+      startCol = m;
+
+      for (var z = 0; z < board.rows().length; z++) {
+
+        console.log(board.get(startRow)[startCol]);
+        if (typeof board.get(startRow)[startCol] === 'number') {
+          count += board.get(startRow)[startCol];  
+        }
+        startRow++;
+        startCol++;
+      }
+      // console.log(count);
+      if (count > 1) {
+        return true;
+      } else {
+        return false;
+      }
+
       // var board = this;
       // return board.hasRowConflictAt(majorDiagonalColumnIndexAtFirstRow, board.major);
     
