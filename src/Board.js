@@ -144,37 +144,54 @@
     // test if a specific major diagonal on this board contains a conflict
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
 
+      var j, i, count, startRow, m, startCol;
+      var board = this;
+      m = majorDiagonalColumnIndexAtFirstRow;
+      count = 0; 
+    
+      startRow = 0;
+      startCol = m;
+
+      for (var z = 0; z < board.rows().length; z++) {
+
+        console.log(board.get(startRow)[startCol]);
+        if (typeof board.get(startRow)[startCol] === 'number') {
+          count += board.get(startRow)[startCol];  
+        }
+        startRow++;
+        startCol++;
+      }
+      // console.log(count);
+      if (count > 1) {
+        return true;
+      } else {
+        return false;
+      }
+
       // var board = this;
       // return board.hasRowConflictAt(majorDiagonalColumnIndexAtFirstRow, board.major);
-        return false;
+    
     },
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
-      // var board = this;
-      // var array = board.rows();
-      // board.major = []
-      // var isFalse = false;
-      // var i = 0;
-      // var j =
+      var board = this;
+      var colidx = -3;
+      var inner = function() {
+        
+        if (colidx > 3) {
+          return false; 
+        }
+        if (board.hasMajorDiagonalConflictAt(colidx)) {
+          return true;
+        } 
+        colidx++;
+        // console.log(colidx);
+        return inner(); 
+        
+      };
+      return inner();
 
-      // // array[0][0];
-      // var inner = function(array) {
-      //   while (major[0].length < 4) {
-      //     board.major[i].push(array[i][j]);
-      //     i++;
-      //     inner(array.splice(0, 1));
-
-      //   }
-      // };
-      // inner(array);
-      // _.each(board.major, function(array, index) {
-      //   if (board.hasAnyMajorDiagonalConflicts(index)) {
-      //     isFalse = true;
-      //   }
-      // });
-      // return isFalse;
-      return false;
     },  
 
     // Minor Diagonals - go from top-right to bottom-left
