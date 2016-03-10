@@ -135,28 +135,47 @@
         }
       });
       return isFalse;
-         
     
-      // fixme
     },
-
-
 
     // Major Diagonals - go from top-left to bottom-right
     // --------------------------------------------------------------
     //
     // test if a specific major diagonal on this board contains a conflict
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
-      
-      return false; // fixme
+
+      // var board = this;
+      // return board.hasRowConflictAt(majorDiagonalColumnIndexAtFirstRow, board.major);
+        return false;
     },
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
-      return false; // fixme
-    },
+      // var board = this;
+      // var array = board.rows();
+      // board.major = []
+      // var isFalse = false;
+      // var i = 0;
+      // var j =
 
+      // // array[0][0];
+      // var inner = function(array) {
+      //   while (major[0].length < 4) {
+      //     board.major[i].push(array[i][j]);
+      //     i++;
+      //     inner(array.splice(0, 1));
 
+      //   }
+      // };
+      // inner(array);
+      // _.each(board.major, function(array, index) {
+      //   if (board.hasAnyMajorDiagonalConflicts(index)) {
+      //     isFalse = true;
+      //   }
+      // });
+      // return isFalse;
+      return false;
+    },  
 
     // Minor Diagonals - go from top-right to bottom-left
     // --------------------------------------------------------------
