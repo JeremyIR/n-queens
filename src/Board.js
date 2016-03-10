@@ -221,7 +221,6 @@
     //
     // test if a specific minor diagonal on this board contains a conflict
     hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) {
-      console.log(minorDiagonalColumnIndexAtFirstRow);  
       var j, i, count, startRow, m, startCol;
       var board = this;
       m = minorDiagonalColumnIndexAtFirstRow;
