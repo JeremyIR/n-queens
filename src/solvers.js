@@ -57,19 +57,75 @@ window.findNRooksSolution = function(n, startCol) {
 
 // return the number of nxn chessboards that exist, with n rooks placed such that none of them can attack each other
 window.countNRooksSolutions = function(n) {
-  var solutionCount = 0; //fixme
+  // have no another n's left
+  //record the number of solutions
+// we start off with with a specific column, taking it as a parameter;
+  // we use the helper solution to find each solution;
+  // time we find a solution, we will change the start column of the first n.
+  
+  var total = 1; //fixme
+  var inner = function(n) {
+  //   if (startPos < n) {
+  //     findNRooksSolution(num, startPos);
+  //     startPos++;
+  //     solutionCount++;
+  //     inner();
+  //   }
 
-  console.log('Number of solutions for ' + n + ' rooks:', solutionCount);
-  return solutionCount;
+    
+  // };
+    var total = 1;
+    if (n <= 0 ) {
+      return total;
+    }
+    return n * inner(n - 1);
+  };
+  return inner(n);  
 };
+
 
 // return a matrix (an array of arrays) representing a single nxn chessboard, with n queens placed such that none of them can attack each other
 window.findNQueensSolution = function(n) {
-  var solution = undefined; //fixme
-
-  console.log('Single solution for ' + n + ' queens:', JSON.stringify(solution));
-  return solution;
+  console.log(n);
+  var board = new Board({n: n });
+  var row = 0;
+  var col = 0;
+  var num = n;
+  var counter = 0;
+  var solution = board.rows();
+  var numSolutions = 0;
+  debugger;
+  var inner = function(col) {
+    
+      
+    for (var j = 0; j < num; j++) {
+      // loop through the first row from the position of the first queen 
+      for (var i = col; i < num; i++) {
+      // initialize the first queen
+        // addition
+        counter++;
+        board.togglePiece(j, i);
+      // check for conflicts
+        if (board.hasAnyQueensConflicts()) {
+          // if no conflict
+          // subraction
+          board.togglePiece(j, i);
+          counter--;
+        }    
+      }
+    }
+    if (counter === n) {
+      return solution;
+    } else {
+      board = new Board({n: n });
+      return inner(col++);
+    }
+    
+  };
+  
+  return inner(col); 
 };
+
 
 // return the number of nxn chessboards that exist, with n queens placed such that none of them can attack each other
 window.countNQueensSolutions = function(n) {
@@ -78,6 +134,7 @@ window.countNQueensSolutions = function(n) {
   console.log('Number of solutions for ' + n + ' queens:', solutionCount);
   return solutionCount;
 };
+  
 
 
  // for skip rook, we want to go down the column and right in the row.

@@ -80,6 +80,7 @@
     // test if a specific row on this board contains a conflict
     hasRowConflictAt: function(rowIndex, array) {
       var board = this;
+
       if (array === undefined) {
         var rowArr = board.rows()[rowIndex];
       } else {
@@ -127,7 +128,12 @@
     hasAnyColConflicts: function() {
       var board = this;
       var array = board.rows().slice();
+      if (board.rows().length === 0) {
+        return isFalse;
+      }
       board.columns = _.zip.apply(null, array);
+     
+
       var isFalse = false; 
       _.each(board.columns, function(array, index) {
         if (board.hasColConflictAt(index)) {
